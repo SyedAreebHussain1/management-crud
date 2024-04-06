@@ -9,7 +9,7 @@ import UpdateSchoolManagementDrawer from "./UpdateSchoolManagementDrawer";
 import deleteIcon from "../../../assests/deleteIcon.png";
 import editPenIcon from "../../../assests/editPenIcon.png";
 
-const SchoolManagementTable = () => {
+const SchoolManagementTable = ({ tableRef }) => {
   const dispatch = useDispatch();
   const [updateState, setUpdateState] = useState({});
   const [dataSource, setDataSource] = useState([]);
@@ -107,37 +107,39 @@ const SchoolManagementTable = () => {
           setUpdateState={setUpdateState}
         />
       )}
-      <Table
-        columns={[
-          {
-            title: "Name",
-            dataIndex: "name",
-          },
-          {
-            title: "Class",
-            dataIndex: "class",
-          },
-          {
-            title: "Section",
-            dataIndex: "section",
-          },
-          {
-            title: "Description",
-            dataIndex: "description",
-          },
-          {
-            title: "Action",
-            dataIndex: "action",
-          },
-        ]}
-        dataSource={dataSource}
-        loading={getSchoolManagement?.loading}
-        pagination={{
-          total: getSchoolManagement?.data?.length,
-          onChange: showTotal,
-        }}
-        scroll={{ x: true }}
-      />
+      <div ref={tableRef}>
+        <Table
+          columns={[
+            {
+              title: "Name",
+              dataIndex: "name",
+            },
+            {
+              title: "Class",
+              dataIndex: "class",
+            },
+            {
+              title: "Section",
+              dataIndex: "section",
+            },
+            {
+              title: "Description",
+              dataIndex: "description",
+            },
+            {
+              title: "Action",
+              dataIndex: "action",
+            },
+          ]}
+          dataSource={dataSource}
+          loading={getSchoolManagement?.loading}
+          pagination={{
+            total: getSchoolManagement?.data?.length,
+            onChange: showTotal,
+          }}
+          scroll={{ x: true }}
+        />
+      </div>
     </>
   );
 };
